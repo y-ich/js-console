@@ -5,6 +5,10 @@ task :install => ['js-console.kmz', 'js-console-load.kml'] do |t|
     copy t.prerequisites[1], File.expand_path('~/Dropbox/KML Loader')
 end
 
+file 'js/js-console.js' => ['js-console.coffee'] do |t|
+    sh "coffee -c -o js #{t.prerequisites[0]}"
+end
+
 file 'js-console.kmz' => ['doc.kml', 'js/js-console.js'] do |t|
     sh "zip #{t.name} #{t.prerequisites.join(' ')}"
 end

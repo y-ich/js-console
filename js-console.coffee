@@ -20,9 +20,10 @@ input.addEventListener 'change', ->
         console.log e.message
 
 container = document.createElement 'div'
-container.setAttribute 'style', 'width: 100%; border: solid, 1px, red; position: absolute; top: 0;'
+container.setAttribute 'style', 'width: 100%; border: solid, 1px, red; position: fixed; bottom: 0;'
 container.appendChild log
 container.appendChild input
 
 window.addEventListener 'load', ->
     document.body.appendChild container
+    document.body.innerHTML = 'pass'
