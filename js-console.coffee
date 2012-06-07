@@ -26,4 +26,3 @@ container.appendChild input
 
 window.addEventListener 'load', ->
     document.body.appendChild container
-    document.body.innerHTML = 'pass'

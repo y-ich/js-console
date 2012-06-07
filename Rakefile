@@ -2,7 +2,7 @@ task :default => ['js-console.kmz']
 
 task :install => ['js-console.kmz', 'js-console-load.kml'] do |t|
     copy t.prerequisites[0], File.expand_path('~/Sites/kml')
-    copy t.prerequisites[1], File.expand_path('~/Dropbox/KML Loader')
+    copy t.prerequisites[1], File.expand_path('~/Dropbox/KML Loaders')
 end
 
 file 'js/js-console.js' => ['js-console.coffee'] do |t|
