@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>js-console.kml</name>
+	<StyleMap id="msn_ylw-pushpin">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin5</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin11</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sn_ylw-pushpin5">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<BalloonStyle>
+			<text><![CDATA[<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta charset="UTF-8" />
+        <meta name="viewport" content="width=320px"> 
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700,300,300italic' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script type="text/javascript" src="js/modernizr.custom.08464.js"></script>
+		<script id="pageTmpl" type="text/x-jquery-tmpl">
+			<div class="${theClass}" style="${theStyle}">
+				<div class="front">
+					<div class="outer">
+						<div class="content" style="${theContentStyleFront}">
+							<div class="inner">{{html theContentFront}}</div>
+						</div>
+					</div>
+				</div>
+				<div class="back">
+					<div class="outer">
+						<div class="content" style="${theContentStyleBack}">
+							<div class="inner">{{html theContentBack}}</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+		</script>
+    </head>
+    <body>
+$[description]
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script type="text/javascript">
+				
+			var $container 	= $( '#flip' ),
+				$pages		= $container.children().hide();
+			
+			Modernizr.load({
+				test: Modernizr.csstransforms3d && Modernizr.csstransitions,
+				yep : ['js/jquery.tmpl.min.js','js/jquery.history.js','js/core.string.js','js/jquery.touchSwipe-1.2.5.js','js/jquery.flips.js'],
+				nope: 'css/fallback.css',
+				callback : function( url, result, key ) {
+					
+					if( url === 'css/fallback.css' ) {
+						$pages.show();
+					}
+					else if( url === 'js/jquery.flips.js' ) {
+						$container.flips();
+					}
+			
+				}
+			});
+				
+		</script>
+    </body>
+</html>]]></text>
+			<bgColor>0000d7ff</bgColor>
+		</BalloonStyle>
+	</Style>
+	<Style id="sh_ylw-pushpin11">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<BalloonStyle>
+			<text><![CDATA[<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta charset="UTF-8" />
+        <meta name="viewport" content="width=320px"> 
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700,300,300italic' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script type="text/javascript" src="js/modernizr.custom.08464.js"></script>
+		<script id="pageTmpl" type="text/x-jquery-tmpl">
+			<div class="${theClass}" style="${theStyle}">
+				<div class="front">
+					<div class="outer">
+						<div class="content" style="${theContentStyleFront}">
+							<div class="inner">{{html theContentFront}}</div>
+						</div>
+					</div>
+				</div>
+				<div class="back">
+					<div class="outer">
+						<div class="content" style="${theContentStyleBack}">
+							<div class="inner">{{html theContentBack}}</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+		</script>
+    </head>
+    <body>
+$[description]
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script type="text/javascript">
+				
+			var $container 	= $( '#flip' ),
+				$pages		= $container.children().hide();
+			
+			Modernizr.load({
+				test: Modernizr.csstransforms3d && Modernizr.csstransitions,
+				yep : ['js/jquery.tmpl.min.js','js/jquery.history.js','js/core.string.js','js/jquery.touchSwipe-1.2.5.js','js/jquery.flips.js'],
+				nope: 'css/fallback.css',
+				callback : function( url, result, key ) {
+					
+					if( url === 'css/fallback.css' ) {
+						$pages.show();
+					}
+					else if( url === 'js/jquery.flips.js' ) {
+						$container.flips();
+					}
+			
+				}
+			});
+				
+		</script>
+    </body>
+</html>]]></text>
+			<bgColor>0000d7ff</bgColor>
+		</BalloonStyle>
+	</Style>
+	<Placemark>
+		<name>js-console</name>
+		<description><![CDATA[<script src="js/js-console.js"></script>]]></description>
+		<LookAt>
+			<longitude>-122.1430199999817</longitude>
+			<latitude>37.44188300000248</latitude>
+			<altitude>0</altitude>
+			<heading>1.110331639298914e-11</heading>
+			<tilt>0</tilt>
+			<range>15.30228627316009</range>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</LookAt>
+		<styleUrl>#msn_ylw-pushpin</styleUrl>
+		<Point>
+			<coordinates>-122.1430199999817,37.44188300000248,0</coordinates>
+		</Point>
+	</Placemark>
+</Document>
+</kml>
