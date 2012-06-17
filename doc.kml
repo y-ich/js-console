@@ -2,6 +2,16 @@
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
 <Document>
 	<name>doc.kml</name>
+	<StyleMap id="msn_mechanic">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_mechanic</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_mechanic</styleUrl>
+		</Pair>
+	</StyleMap>
 	<Style id="sh_mechanic">
 		<IconStyle>
 			<scale>1.4</scale>
@@ -20,19 +30,14 @@
 			<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
 		</IconStyle>
 	</Style>
-	<StyleMap id="msn_mechanic">
-		<Pair>
-			<key>normal</key>
-			<styleUrl>#sn_mechanic</styleUrl>
-		</Pair>
-		<Pair>
-			<key>highlight</key>
-			<styleUrl>#sh_mechanic</styleUrl>
-		</Pair>
-	</StyleMap>
 	<Placemark>
 		<name>js-console</name>
-		<description><![CDATA[<script src="js/js-console.js"></script>]]></description>
+		<description><![CDATA[
+<body>
+test4
+		<script src="http://192.168.10.158/~yuji/js/js-console.js"></script>
+</body>
+]]></description>
 		<LookAt>
 			<longitude>-122.1430199999817</longitude>
 			<latitude>37.44188300000248</latitude>
