@@ -1,4 +1,4 @@
-task :default => ['js-console.kmz']
+task :default => ['js-console.kmz', 'js/bundle.js']
 
 task :install => ['js-console.kmz', 'js-console-load.kml'] do |t|
     copy t.prerequisites[0], File.expand_path('~/Sites/kml')
@@ -12,3 +12,8 @@ end
 file 'js-console.kmz' => ['doc.kml', 'js/js-console.js'] do |t|
     sh "zip #{t.name} #{t.prerequisites.join(' ')}"
 end
+
+file 'js/bundle.js' => ['js/js-console.js'] do |t|
+    sh "browserify #{t.prerequisites.join(' ')} -o #{t.name}"
+end
+
