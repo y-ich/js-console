@@ -2,7 +2,10 @@
 
 JavaScript development environments in desktop browsers are making rapid improvements these days. But how about mobile, or embeded browsers? 
 
-This js-console provides JavaScript console for debugging by adding one line in your web page. No framework libraries are needed.
+This js-console provides JavaScript console for debugging by adding one line in your web page. 
+
+* No framework libraries are needed.
+* Auto completion
 
 ## Demo
 http://y-ich.github.com/js-console/
