@@ -25,3 +25,9 @@ Click "complete" button, then letters right before the caret will be completed t
 Click "compelete" button successively, then next candicate will appear.
 
 Click cursor-right button, then the candidate will be adopted.
+
+## Acknowledge
+js-console uses parse-js.js and is built by browserify. I appreciate both projects.
+
+* parse-js.js in <a href="https://github.com/mishoo/UglifyJS">UglifyJS</a>
+* <a href="https://github.com/substack/node-browserify">browerify</a>
