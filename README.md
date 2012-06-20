@@ -1,7 +1,7 @@
 # js-console : JavaScript console plugin independent of browsers 
 ## How to plugin
-<meta charset="UTF-8">
-<script src="js-console-bundle.js"></script>
+> <meta charset="UTF-8">
+> <script src="js-console-bundle.js"></script>
 
 ## Usage
 ### Basic
