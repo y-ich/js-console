@@ -1,5 +1,10 @@
 # js-console: browser independent JavaScript console
 # Copyright (C) 2012 ICHIKAWA, Yuji (New 3 Rs)
+# Usage
+# <script src="js-console-bundle.js"></script>
+#
+# complete button : complete a word before caret. continuous click shows next candicate.
+# cursor right button : adopt completion
 
 parseJs = require './parse-js'
 
@@ -70,7 +75,12 @@ currentObject = (tokens) ->
                 obj = obj[chain[i]]
     obj
 
-candidates = (obj, str) ->
+lastCandidate =
+    target : ''
+    index : 0
+    candicates : null
+
+pickupCandidates = (obj, str) ->
     arrayProps = ["length", "pop", "push", "reverse", "shift", "sort", "splice", "unshift",
                   "concat", "join", "slice", "indexOf", "lastIndexOf",
                   "filter", "forEach", "every", "map", "some", "reduce", "reduceRight"]
@@ -109,13 +119,16 @@ candidates = (obj, str) ->
                     result.push e for e in regexpProps when e.indexOf(str) is 0
                 result.push e for e of obj when e.indexOf(str) is 0
 
-    result.sort()
+    lastCandidate.target = str
+    lastCandidate.index = 0
+    lastCandidate.candidates = result.sort()
 
 getCandidates = (str) ->
-    tokens = tokensIn str + '$caret$'
+    tokens = tokensIn str + '$caret$' # $caret$ is dummy postfix of name to make sure for some token to exist at the position of caret. 
     return [] if tokens.length is 0 # for example, tokensIn with arugment of comment line returns empty array. 
 
-    candidates currentObject(tokens), tokens[tokens.length - 1].value.replace('$caret$', '')
+    target = tokens[tokens.length - 1].value.replace('$caret$', '') # target for completing
+    [target, pickupCandidates(currentObject(tokens), target)]
 
 
 # HTML elements
@@ -130,8 +143,30 @@ log.addEventListener 'click', ->
         container.style.bottom = ''
         container.style.top = '0'
 
+complete = document.createElement 'input'
+complete.type = 'button'
+complete.value = 'complete'
+complete.addEventListener 'mousedown', (event) ->
+    event.preventDefault() # prevent blurr of input field
 
-input = document.createElement 'input'
+complete.addEventListener 'click', ->
+    beforeCursor = input.value.slice 0, input.selectionStart
+    if input.selectionStart == input.selectionEnd # consider no selection as after completion
+        [target, cand] = getCandidates beforeCursor
+        if cand.length > 0
+            start = input.selectionStart # selectionStart will be changed when value is changed.
+            input.value = beforeCursor.replace(new RegExp(target + '$'), cand[0]) + input.value.slice(input.selectionStart)
+            input.selectionStart = start
+            input.selectionEnd = start + cand[0].length
+    else
+        lastCandidate.index += 1
+        lastCandidate.index = 0 if lastCandidate.index >= lastCandidate.candidates.length
+        start = input.selectionStart # selectionStart will be changed when value is changed.
+        input.value = beforeCursor.replace(new RegExp(lastCandidate.target + '$'), lastCandidate.candidates[lastCandidate.index]) + input.value.slice(input.selectionEnd)
+        input.selectionStart = start
+        input.selectionEnd = start + lastCandidate.candidates[lastCandidate.index].length
+
+window.input = document.createElement 'input'
 input.type = 'text'
 input.size = '80'
 input.addEventListener 'change', ->
@@ -140,14 +175,53 @@ input.addEventListener 'change', ->
         console.log eval input.value
     catch e
         console.log e.message
-input.addEventListener 'keyup', ->
-    console.log getCandidates input.value.slice(0, input.selectionStart)
 
+cursorLeft = document.createElement 'input'
+cursorLeft.type = 'button'
+cursorLeft.value = '◀'
+cursorLeft.addEventListener 'mousedown', (event) ->
+    event.preventDefault() # prevent blurr of input field
+cursorLeft.addEventListener 'click', ->
+    if input.selectionStart > 0
+        input.selectionStart = input.selectionStart - 1 
+        input.selectionEnd = input.selectionStart
+
+cursorRight = document.createElement 'input'
+cursorRight.type = 'button'
+cursorRight.value = '▶'
+cursorRight.addEventListener 'mousedown', (event) ->
+    event.preventDefault() # prevent blurr of input field
+cursorRight.addEventListener 'click', (event) ->
+    if input.selectionStart == input.selectionEnd
+        if input.selectionStart < input.value.length
+            input.selectionStart = input.selectionStart + 1 
+            input.selectionEnd = input.selectionStart
+    else
+        input.selectionStart = input.selectionEnd
+
+cursorUp = document.createElement 'input'
+cursorUp.type = 'button'
+cursorUp.value = '▲'
+cursorUp.addEventListener 'mousedown', (event) ->
+    event.preventDefault() # prevent blurr of input field
+cursorUp.addEventListener 'click', ->
+
+cursorDown = document.createElement 'input'
+cursorDown.type = 'button'
+cursorDown.value = '▼'
+cursorDown.addEventListener 'mousedown', (event) ->
+    event.preventDefault() # prevent blurr of input field
+cursorDown.addEventListener 'click', ->
 
 container = document.createElement 'div'
 container.setAttribute 'style', 'width: 100%; border: solid, 1px, red; position: fixed; bottom: 0;'
 container.appendChild log
+container.appendChild complete
 container.appendChild input
+container.appendChild cursorLeft
+container.appendChild cursorRight
+container.appendChild cursorUp
+container.appendChild cursorDown
 
 
 window.addEventListener 'load', ->
