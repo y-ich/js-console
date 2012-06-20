@@ -170,12 +170,13 @@ complete.addEventListener 'click', ->
 window.input = document.createElement 'input'
 input.type = 'text'
 input.style.width = '90%'
-input.addEventListener 'change', ->
-    console.log '> ' + input.value
-    try 
-        console.log eval input.value
-    catch e
-        console.log e.message
+input.addEventListener 'keydown', (event) ->
+    if event.keyCode == 13 # return key
+        console.log '> ' + input.value
+        try 
+            console.log eval input.value
+        catch e
+            console.log e.message
 
 cursorLeft = document.createElement 'input'
 cursorLeft.type = 'button'
