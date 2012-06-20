@@ -1,6 +1,11 @@
-# js-console : JavaScript console plugin independent of browsers 
+# js-console : JavaScript console plugin by JavaScript
+
+## Demo
+http://y-ich.github.com/js-console/
+
 ## How to plugin
 &lt;meta charset="UTF-8"&gt;
+
 &lt;script src="js-console-bundle.js"&gt;&lt;/script&gt;
 
 ## Usage
@@ -16,5 +21,7 @@ Click black pane, then the position will change up and down.
 
 #### Auto completion
 Click "complete" button, then letters right before the caret will be completed to a candicate.
+
 Click "compelete" button successively, then next candicate will appear.
+
 Click cursor-right button, then the candidate will be adopted.
