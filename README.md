@@ -1,9 +1,13 @@
-# js-console : JavaScript console plugin by JavaScript
+# js-console : JavaScript console by JavaScript
+
+JavaScript development environments in desktop browsers are making rapid improvements these days. But how about mobile, or embeded browsers? 
+
+This js-console provides JavaScript console for debugging by adding one line in your web page. No framework libraries are needed.
 
 ## Demo
 http://y-ich.github.com/js-console/
 
-## How to plugin
+## How to add the console to a web page
 &lt;meta charset="UTF-8"&gt;
 
 &lt;script src="js-console-bundle.js"&gt;&lt;/script&gt;
