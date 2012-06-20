@@ -5,6 +5,7 @@
 #
 # complete button : complete a word before caret. continuous click shows next candicate.
 # cursor right button : adopt completion
+# log pane : toggle the postion when touching
 
 parseJs = require './parse-js'
 
@@ -143,7 +144,7 @@ log.addEventListener 'click', ->
         container.style.bottom = ''
         container.style.top = '0'
 
-complete = document.createElement 'input'
+window.complete = document.createElement 'input'
 complete.type = 'button'
 complete.value = 'complete'
 complete.addEventListener 'mousedown', (event) ->
@@ -168,7 +169,7 @@ complete.addEventListener 'click', ->
 
 window.input = document.createElement 'input'
 input.type = 'text'
-input.size = '80'
+input.style.width = '90%'
 input.addEventListener 'change', ->
     console.log '> ' + input.value
     try 
@@ -199,19 +200,19 @@ cursorRight.addEventListener 'click', (event) ->
     else
         input.selectionStart = input.selectionEnd
 
-cursorUp = document.createElement 'input'
-cursorUp.type = 'button'
-cursorUp.value = '▲'
-cursorUp.addEventListener 'mousedown', (event) ->
-    event.preventDefault() # prevent blurr of input field
-cursorUp.addEventListener 'click', ->
+# cursorUp = document.createElement 'input'
+# cursorUp.type = 'button'
+# cursorUp.value = '▲'
+# cursorUp.addEventListener 'mousedown', (event) ->
+#     event.preventDefault() # prevent blurr of input field
+# cursorUp.addEventListener 'click', ->
 
-cursorDown = document.createElement 'input'
-cursorDown.type = 'button'
-cursorDown.value = '▼'
-cursorDown.addEventListener 'mousedown', (event) ->
-    event.preventDefault() # prevent blurr of input field
-cursorDown.addEventListener 'click', ->
+# cursorDown = document.createElement 'input'
+# cursorDown.type = 'button'
+# cursorDown.value = '▼'
+# cursorDown.addEventListener 'mousedown', (event) ->
+#     event.preventDefault() # prevent blurr of input field
+# cursorDown.addEventListener 'click', ->
 
 container = document.createElement 'div'
 container.setAttribute 'style', 'width: 100%; border: solid, 1px, red; position: fixed; bottom: 0;'
@@ -220,9 +221,11 @@ container.appendChild complete
 container.appendChild input
 container.appendChild cursorLeft
 container.appendChild cursorRight
-container.appendChild cursorUp
-container.appendChild cursorDown
+# container.appendChild cursorUp
+# container.appendChild cursorDown
 
 
 window.addEventListener 'load', ->
     document.body.appendChild container
+    input.style.width = (innerWidth - complete.clientWidth - cursorLeft.clientWidth - cursorRight.clientWidth - 2 * 8 - 8 * 2 - 10) + 'px' # 2px margins for each edge of each elelement, 8px margins of body, 10px for itself.
+
