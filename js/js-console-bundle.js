@@ -1943,12 +1943,14 @@ require.define("/js-console.js", function (require, module, exports, __dirname, 
 
   input.style.width = '90%';
 
-  input.addEventListener('change', function() {
-    console.log('> ' + input.value);
-    try {
-      return console.log(eval(input.value));
-    } catch (e) {
-      return console.log(e.message);
+  input.addEventListener('keydown', function(event) {
+    if (event.keyCode === 13) {
+      console.log('> ' + input.value);
+      try {
+        return console.log(eval(input.value));
+      } catch (e) {
+        return console.log(e.message);
+      }
     }
   });
 
