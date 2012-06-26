@@ -174,7 +174,7 @@ input.addEventListener 'keydown', (event) ->
     if event.keyCode == 13 # return key
         console.log '> ' + input.value
         try 
-            console.log eval input.value
+            console.log(eval.call window, input.value)
         catch e
             console.log e.message
 

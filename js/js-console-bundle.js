@@ -1947,7 +1947,7 @@ require.define("/js-console.js", function (require, module, exports, __dirname, 
     if (event.keyCode === 13) {
       console.log('> ' + input.value);
       try {
-        return console.log(eval(input.value));
+        return console.log(eval.call(window, input.value));
       } catch (e) {
         return console.log(e.message);
       }
